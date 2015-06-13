@@ -44,7 +44,8 @@
     "grunt": "~0.4.5"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "phpunit"
   ],
   "dependencies": {
     "extend-grunt-plugin": "^0.1.0",
