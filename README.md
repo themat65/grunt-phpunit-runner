@@ -295,8 +295,8 @@ The equivalent of `phpunit`'s `--version` option
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+#### Good Options
+An example how to generate test and coverage reports
 
 ```js
 grunt.initConfig({
@@ -316,7 +316,7 @@ grunt.initConfig({
 ```
 
 #### Fast Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+This is a config that runs very fast, and could be used in a `watch` config for example
 
 ```js
 grunt.initConfig({
