@@ -5,8 +5,10 @@ module.exports = function () {
 		demo: {
 			options: {},
 			files: {
-				blablabla: '**/*.php'
+				multi: '**/*.php',
+				single: 'reports'
 			}
 		}
+
 	};
 };

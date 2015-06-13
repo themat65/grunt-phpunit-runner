@@ -1,7 +1,9 @@
 'use strict';
-var extendGruntPlugin = require('extend-grunt-plugin'),
-	_ = require('lodash'),
-	Command = require('./lib/command');
+
+var _ = require('lodash'),
+	Command = require('./lib/command'),
+	PhpunitTarget = require('./lib/phpunit-target'),
+	extendPlugin = require('extend-grunt-plugin');
 
 module.exports = function (grunt) {
 
@@ -21,7 +23,7 @@ module.exports = function (grunt) {
 					cmd.append(flagValue);
 				}
 			},
-			command = function (opts, files) {
+			command = function (opts, file) {
 				var cmd = new Command(),
 					toExecute = '';
 
@@ -92,9 +94,7 @@ module.exports = function (grunt) {
 					cmd.append('--colors=' + opts.colors);
 				}
 
-				files.forEach(function (file) {
-					cmd.append(file);
-				});
+				cmd.append(file.command());
 
 				toExecute = cmd.toString();
 				return toExecute;
@@ -102,29 +102,39 @@ module.exports = function (grunt) {
 			log = function (error, stdout, stderr, cb) {
 				if (error) {
 					grunt.log.error(stdout);
+					throw grunt.util.error('Error executing phpunit', stdout);
 				} else {
 					grunt.log.ok(stdout);
 				}
 				return cb();
-			};
+			},
+			i = 0,
+			opt = {};
 
-		this.files.forEach(function (file) {
-			workFiles = file.src.filter(function (fpath) {
-				return grunt.file.exists(fpath);
+		this.files.forEach(function (target) {
+
+			target.src.forEach(function (fpath) {
+				workFiles.push(new PhpunitTarget(grunt, fpath, target.dest));
 			});
-		});
 
-		extendGruntPlugin(grunt, require('grunt-shell/tasks/shell'), {
-			'shell.phpunit-runner': {
-				options: {
-					callback: log
-				},
-				command: command(options, workFiles)
-			}
 		});
 
 		if (!_.isEmpty(workFiles)) {
-			grunt.task.run('shell:phpunit-runner');
+			i = 0;
+			workFiles.forEach(function (file) {
+
+				opt['shell.phpunit-runner-' + i] = {
+					options: {
+						callback: log
+					},
+					command: command(options, file)
+				};
+
+				extendPlugin(grunt, require('grunt-shell/tasks/shell'), opt);
+				grunt.task.run('shell:phpunit-runner-' + i);
+				i++;
+			});
+
 		} else {
 			grunt.log.warn('No files matched the pattern');
 		}

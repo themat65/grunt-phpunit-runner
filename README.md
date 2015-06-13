@@ -30,10 +30,57 @@ grunt.initConfig({
     },
     your_target: {
       // Target-specific file lists and/or options go here.
-    },
-  },
+    }
+  }
 });
 ```
+
+Phpunit currently doesn't support individual files to deal with.
+`grunt-phpunit-runner` bridges that gap... sort of.
+
+### Test files
+
+#### Specifying a test folder
+```js
+grunt.initConfig({
+  phpunit-runner: {
+    options: {
+      phpunit: 'vendor/bin/phpunit'
+    },
+    testFolder: 'tests/'
+  }
+});
+```
+
+##### Specifying multiple folders
+
+You can specify multiple folders. That will result in running phpunit as many times
+as number of folders you have.
+
+```js
+grunt.initConfig({
+  phpunit-runner: {
+    options: {
+      phpunit: 'vendor/bin/phpunit'
+    },
+    testFolder1: 'tests1/',
+    testFolder2: 'tests2/'
+  }
+});
+```
+
+#### Specifying unittests
+```js
+grunt.initConfig({
+  phpunit-runner: {
+    options: {
+      phpunit: 'vendor/bin/phpunit'
+    },
+    testName: 'tests/testName.php'
+  }
+});
+```
+Again, you can specify as many as you'd like
 
 ### Options
 
@@ -308,7 +355,7 @@ grunt.initConfig({
       colors: true
     },
     files: {
-          testFiles: '**/*Test.php'
+          testFiles: 'tests/'
         }
     }
   }
@@ -326,7 +373,7 @@ grunt.initConfig({
       colors: true
     },
     files: {
-          testFiles: '**/*Test.php'
+          testFiles: 'tests/'
         }
     }
   }
