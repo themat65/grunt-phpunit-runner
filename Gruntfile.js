@@ -17,6 +17,6 @@ module.exports = function (grunt) {
 	grunt.loadTasks('tasks');
 	grunt.initConfig(configs);
 
-	grunt.registerTask('default', ['eslint']);
+	grunt.registerTask('default', ['eslint:base']);
 
 };
