@@ -107,7 +107,7 @@ Type: `Object`
 For `phpunit`'s `-d` flag.
 
 ```js
-extraParameters: {
+phpIni: {
   'parameter':'value',
   'flag': ''
 }
@@ -385,3 +385,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 * 0.1.0 - basic functionality
+* 0.1.3 - working targets
+* 0.1.4 - readme fixup
