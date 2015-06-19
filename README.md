@@ -24,7 +24,7 @@ In your project's Gruntfile, add a section named `phpunit-runner` to the data ob
 
 ```js
 grunt.initConfig({
-  phpunit-runner: {
+  'phpunit-runner': {
     options: {
       // Task-specific options go here.
     },
@@ -43,7 +43,7 @@ Phpunit currently doesn't support individual files to deal with.
 #### Specifying a test folder
 ```js
 grunt.initConfig({
-  phpunit-runner: {
+  'phpunit-runner': {
     all: {
       options: {
         phpunit: 'vendor/bin/phpunit'
@@ -61,7 +61,7 @@ as number of folders you have.
 
 ```js
 grunt.initConfig({
-  phpunit-runner: {
+  'phpunit-runner': {
     all: {
       options: {
         phpunit: 'vendor/bin/phpunit'
@@ -76,7 +76,7 @@ grunt.initConfig({
 #### Specifying unittests
 ```js
 grunt.initConfig({
-  phpunit-runner: {
+  'phpunit-runner': {
     all: {
       options: {
         phpunit: 'vendor/bin/phpunit'
@@ -353,16 +353,18 @@ An example how to generate test and coverage reports
 
 ```js
 grunt.initConfig({
-  complete: {
-    options: {
-      phpunit: 'vendor/bin/phpunit',
-      logJunit: 'reports/unit.xml',
-      coverageClover: 'reports/coverage.xml',
-      colors: true
-    },
-    files: {
-          testFiles: 'tests/'
-        }
+  'phpunit-runner': {
+    complete: {
+      options: {
+        phpunit: 'vendor/bin/phpunit',
+        logJunit: 'reports/unit.xml',
+        coverageClover: 'reports/coverage.xml',
+        colors: true
+      },
+      files: {
+            testFiles: 'tests/'
+          }
+      }
     }
   }
 });
@@ -373,14 +375,16 @@ This is a config that runs very fast, and could be used in a `watch` config for 
 
 ```js
 grunt.initConfig({
-  fast: {
-    options: {
-      phpunit: 'vendor/bin/phpunit',
-      colors: true
-    },
-    files: {
-          testFiles: 'tests/'
-        }
+  'phpunit-runner': {
+    fast: {
+      options: {
+        phpunit: 'vendor/bin/phpunit',
+        colors: true
+      },
+      files: {
+            testFiles: 'tests/'
+          }
+      }
     }
   }
 });
@@ -390,6 +394,7 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 0.1.7 - proper config in readme
 * 0.1.6 - cleaning up versions and travis
 * 0.1.5 - readme fixup
 * 0.1.4 - readme fixup
