@@ -102,9 +102,10 @@ module.exports = function (grunt) {
 			log = function (error, stdout, stderr, cb) {
 				if (error) {
 					grunt.log.error(stdout);
-				} else {
-					grunt.log.ok(stdout);
+					return cb(error);
 				}
+
+				grunt.log.ok(stdout);
 				return cb();
 			},
 			i = 0,
