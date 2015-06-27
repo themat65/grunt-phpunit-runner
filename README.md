@@ -394,6 +394,7 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 0.1.8 - fixed properly quitting on error, and suppressed double error logging
 * 0.1.7 - proper config in readme
 * 0.1.6 - cleaning up versions and travis
 * 0.1.5 - readme fixup

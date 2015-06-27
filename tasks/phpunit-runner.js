@@ -102,7 +102,6 @@ module.exports = function (grunt) {
 			log = function (error, stdout, stderr, cb) {
 				if (error) {
 					grunt.log.error(stdout);
-					throw grunt.util.error('Error executing phpunit', stdout);
 				} else {
 					grunt.log.ok(stdout);
 				}
@@ -125,7 +124,9 @@ module.exports = function (grunt) {
 
 				opt['shell.phpunit-runner-' + i] = {
 					options: {
-						callback: log
+						callback: log,
+						stderr: false,
+						stdout: false
 					},
 					command: command(options, file)
 				};
